@@ -8,10 +8,6 @@ st.set_page_config(page_title="PyCRYSTAL23",
                     layout='centered',
                     initial_sidebar_state='expanded')
 
-# apply custom css if needed
-# with open('assets/styles/style.css') as css:
-#     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html=True)
-
 
 if __name__ == "__main__":
     st.title('PyCRYSTAL23')
