@@ -1,7 +1,5 @@
 from ase.io import read, write
 import streamlit as st
-from io import StringIO
-
 
 
 def get_ase_coordinates(structure_files: 'str'):
