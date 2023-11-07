@@ -2,10 +2,10 @@ import streamlit as st
 
 
 # set basic page config
-st.set_page_config(page_title="Streamlit Template",
+st.set_page_config(page_title="PyCRYSTAL23",
                     page_icon='✅',
                     layout='centered',
-                    initial_sidebar_state='collapsed')
+                    initial_sidebar_state='expanded')
 
 # apply custom css if needed
 # with open('assets/styles/style.css') as css:
