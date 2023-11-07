@@ -1,9 +1,10 @@
 import streamlit as st
+from utils import read_uploaded_files
 
 
 # set basic page config
 st.set_page_config(page_title="PyCRYSTAL23",
-                    page_icon='✅',
+                    page_icon='U+269B',
                     layout='centered',
                     initial_sidebar_state='expanded')
 
@@ -13,12 +14,14 @@ st.set_page_config(page_title="PyCRYSTAL23",
 
 
 if __name__ == "__main__":
-    st.title('🔨 Streamlit Template')
+    st.title('PyCRYSTAL23')
     st.markdown("""
-        This app is only a template for a new Streamlit project. <br>
-
+        PyCRYSTAL23 is a user-friendly Python tool designed to help you generate CRYSTAL23 input files with ease. 
+        Whether you're a seasoned materials scientist or just starting with CRYSTAL23, this tool provides a simple and intuitive interface, 
+        letting you focus on the science. <br>
         ---
         """, unsafe_allow_html=True)
-    uploaded_file = st.file_uploader("Upload Structure Files", accept_multiple_files=True)
-
-    st.balloons()
+    uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
+    positions = read_uploaded_files.get_ase_coordinates(structure_files=uploaded_files)
+            
+    
