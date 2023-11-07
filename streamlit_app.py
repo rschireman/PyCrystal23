@@ -19,5 +19,6 @@ if __name__ == "__main__":
 
         ---
         """, unsafe_allow_html=True)
+    uploaded_file = st.file_uploader("Upload Structure Files", accept_multiple_files=True)
 
     st.balloons()
