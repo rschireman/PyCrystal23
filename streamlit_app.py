@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import read_uploaded_files
+from utils import input_generator
 
 
 # set basic page config
@@ -14,10 +14,9 @@ if __name__ == "__main__":
     st.markdown("""
         PyCRYSTAL23 is a user-friendly Python tool designed to help you generate CRYSTAL23 input files with ease. 
         Whether you're a seasoned materials scientist or just starting with CRYSTAL23, this tool provides a simple and intuitive interface, 
-        letting you focus on the science. <br>
+        letting you focus on the science.
         ---
         """, unsafe_allow_html=True)
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
-    positions = read_uploaded_files.get_ase_coordinates(structure_files=uploaded_files)
-            
+
     
