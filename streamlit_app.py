@@ -1,6 +1,4 @@
 import streamlit as st
-
-
 # set basic page config
 st.set_page_config(page_title="PyCRYSTAL23",
                     page_icon='U+269B',
@@ -21,3 +19,4 @@ if __name__ == "__main__":
 
     
     items = connection.get_data()
+    print(items)
