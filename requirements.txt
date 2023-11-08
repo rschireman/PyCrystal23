@@ -1,3 +1,4 @@
 # add the required pypi packages here that your app actually needs
 streamlit
 ase
+pymongo

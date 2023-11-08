@@ -1,5 +1,4 @@
 import streamlit as st
-from utils import input_generator
 
 
 # set basic page config
@@ -7,7 +6,8 @@ st.set_page_config(page_title="PyCRYSTAL23",
                     page_icon='U+269B',
                     layout='centered',
                     initial_sidebar_state='expanded')
-
+from utils import input_generator
+from database import connection
 
 if __name__ == "__main__":
     st.title('PyCRYSTAL23')
@@ -20,3 +20,4 @@ if __name__ == "__main__":
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
 
     
+    items = connection.get_data()
