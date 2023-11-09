@@ -18,7 +18,8 @@ if __name__ == "__main__":
         ---
         """, unsafe_allow_html=True)
     # st.sidebar.write("Basis Set Name")
-    basis_set = st.sidebar.selectbox("Basis Set", ('B3LYP', 'PBE', 'PBE0'))
+    basis_set = st.sidebar.selectbox("Basis Set", ('B3LYP', 'PBE', 'PBE0', 'BLYP', 
+                                                   'PBESOL'))
     st.sidebar.write("XC Functional")
     st.sidebar.write("Calculation Type (select one)")
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
