@@ -19,3 +19,7 @@ if __name__ == "__main__":
         """, unsafe_allow_html=True)
     
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
+    BASIS_SET = '6-31G(d,p)'
+    structures = input_generator.get_structures(uploaded_files)
+    formatted_basis = connection.query_basis(BASIS_SET, structures)
+    print(formatted_basis)

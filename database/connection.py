@@ -7,6 +7,18 @@ import pymongo
 def init_connection():
     return pymongo.MongoClient(**st.secrets["mongo"])
 
+client = init_connection()
 
+# Pull data from the collection.
+
+def query_basis(basis_set, structures):
+    db = client.CrystalBasisData
     
-
+    result = {}
+    for key,value in structures.items():
+        atoms = set(value.get_chemical_symbols())
+        for atom in atoms:
+            items = db.basis_data.find({"Basis Set": basis_set, "atom": atom})
+            result[atom] = list(items)
+    return result
+# items = get_basis()
