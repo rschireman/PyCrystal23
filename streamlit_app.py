@@ -17,7 +17,9 @@ if __name__ == "__main__":
         letting you focus on the science.
         ---
         """, unsafe_allow_html=True)
-    
+    st.sidebar.write("Basis Set Name")
+    st.sidebar.write("XC Functional")
+    st.sidebar.write("Calculation Type (select one)")
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
     BASIS_SET = '6-31G(d,p)'
     structures = input_generator.get_structures(uploaded_files)
