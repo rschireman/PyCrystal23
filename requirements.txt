@@ -2,3 +2,4 @@
 streamlit
 ase
 pymongo
+pytest
