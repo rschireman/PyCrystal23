@@ -5,6 +5,9 @@ from database import connection
 
 
 def get_structures(structure_files: 'str'):
+    """
+    Returns a list of ASE atoms objects
+    """
     structures = {}
     for uploaded_file in structure_files:
         st.write("Filename: ", uploaded_file.name)
@@ -16,16 +19,4 @@ def get_structures(structure_files: 'str'):
         structures[uploaded_file.name] = structure
     print(structures)   
     return structures    
-        # if uploaded_file.name.endswith('xyz'):
-        #     st.warning('XYZ file detected, INPUT file will assume gas-phase calculation', icon="‼️")
-        #     structure = read(uploaded_file.name)
-        #     symbols = structure.get_chemical_symbols()
-        #     positions = structure.get_scaled_positions() 
-        #     return symbols, positions
-        # else:
-        #     structure = read(uploaded_file.name)
-        #     symbols = structure.get_chemical_symbols()
-        #     positions = structure.get_scaled_positions()    
-        #     cell = structure.get_cell_lengths_and_angles()
-        #     return symbols, positions, cell
 
