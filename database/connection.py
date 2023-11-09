@@ -10,7 +10,7 @@ def init_connection():
 client = init_connection()
 
 # Pull data from the collection.
-@st.cache_data(ttl=30)
+@st.cache_data(ttl=10)
 def query_basis(basis_set, _structures):
     db = client.CrystalBasisData
     result = {}

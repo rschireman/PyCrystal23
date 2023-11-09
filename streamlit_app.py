@@ -17,13 +17,16 @@ if __name__ == "__main__":
         letting you focus on the science.
         ---
         """, unsafe_allow_html=True)
-    # st.sidebar.write("Basis Set Name")
-    basis_set = st.sidebar.selectbox("Basis Set", ('B3LYP', 'PBE', 'PBE0', 'BLYP', 
+
+    st.sidebar.write("Basis Set")
+    basis_set = st.sidebar.selectbox("Functional", ('B3LYP', 'PBE', 'PBE0', 'BLYP', 
                                                    'PBESOL'))
-    st.sidebar.write("XC Functional")
+   
     st.sidebar.write("Calculation Type (select one)")
     uploaded_files = st.file_uploader("Upload Structure Files (any format accepted by the ASE will work, such as XYZ, PD, CIF, etc.)", accept_multiple_files=True)
     BASIS_SET = '6-31G(d,p)'
     structures = input_generator.get_structures(uploaded_files)
     formatted_basis = connection.query_basis(BASIS_SET, structures)
     print(formatted_basis)
+
+    st.text_area(label="INPUT File", value=formatted_basis, height=350)
