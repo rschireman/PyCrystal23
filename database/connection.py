@@ -1,5 +1,9 @@
 import streamlit as st
 import pymongo
+import basis_set_exchange as bse
+
+ALL_BASIS_SETS = bse.get_all_basis_names()
+print(ALL_BASIS_SETS)
 
 # Initialize connection.
 # Uses st.cache_resource to only run once.
