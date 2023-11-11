@@ -3,7 +3,7 @@ import streamlit as st
 import basis_set_exchange as bse
 from database import connection
 
-CALCULATION_TYPES = {"Single Point Energy": [''], 
+CALCULATION_TYPES_DEFUALTS = {"Single Point Energy": [''], 
                       "Geometry Optimization": ['OPTGEOM', 'TOLDEG', '0.000010', 'TOLDEX', '0.000040', 'PRINTHESS', 'PRINTFORCES', 'PRINTOPT', 'END'], 
                        "Frequencies": ['FREQCALC', 'INTENS', 'END'], 
                        "Equation of State": ['EOS', 'RANGE', '0.98 1.10 10','TOLDEG', '0.000010', 'TOLDEX', '0.000040', 'END']}
@@ -13,7 +13,7 @@ CRYSTAL_DEFAULTS = {'TOLDEE': '8', 'TOLINTEG': '7 7 7 7 14' }
 
 def get_structures(structure_files: 'str'):
     """
-    Returns a list of ASE atoms objects
+    Returns a list of ASE atoms objects from structure file(s)
     """
     structures = {}
     for uploaded_file in structure_files:
