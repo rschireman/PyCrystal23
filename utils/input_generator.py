@@ -38,19 +38,70 @@ def get_formatted_basis_set(basis_set: 'str', ase_structures):
 
 def get_basis_references(basis_set: 'str', ase_structures):
     ref_list = []
-    
     for structure in ase_structures.values():
         elements = structure.get_chemical_symbols()
         ref_list.append(bse.get_references(basis_set, elements=elements, fmt='bib'))
         return ref_list
 
+def get_minimal_lattice_parameters(spacegroup, lattice):
+    
+    a, b, c, alpha , beta, gamma = lattice
+    if spacegroup in range(3,15):
+        print("monoclinic")
+        # check uniqeness of cell angles -- see CRYSTAL17 pg 20
+        if alpha == gamma:
+            print("Testing Uniqueness of angles")
+            if alpha != beta:
+                print("b unique")
+                del lattice[3]
+                del lattice[5]
+        elif alpha == beta:
+            print("Testing Uniquness of Angles")
+            if alpha != gamma:
+                print("c unique")
+                del lattice[3]
+                del lattice[4]
+        elif beta == gamma:
+            print("Testing Uniquness of Angles")
+            if alpha != beta:
+                print("a unique")
+                del lattice[4]
+                del lattice[5]
+        return lattice
+    
+    elif spacegroup in range(16, 75):
+        print("Orthorombic")
+        lattice = lattice[0:3]
+        return lattice
+
+    elif spacegroup in range(75, 143):
+        print("Tetragonal")
+        del lattice[1]
+        return lattice
+
+    elif spacegroup in range(143,168):
+        print("Trigonal")
+        del lattice[1]
+        return lattice
+
+    elif spacegroup in range(168, 195):
+        print("Hexagonal")
+        del lattice[1]
+        return lattice
+
+    elif spacegroup in range(195, 231):
+        print("Cubic")
+        lattice = lattice[0]
+        return lattice
+
+
+
+
 def write_input(input_dict):
     structures = input_dict['structures']
-    print(structures)
     calc_type = input_dict['calc_type']
     calc_lines = CALCULATION_TYPES_DEFUALTS[calc_type]
     
-
     formatted_basis = get_formatted_basis_set(input_dict['user_basis'], structures)
 
     for filename,structure in structures.items():
@@ -59,21 +110,27 @@ def write_input(input_dict):
             if structure.get_pbc()[0] == True:
                 crystal_object = Crystal.from_ase(structure)
                 spacegroup = crystal_object.symmetry()['international_number']
+                cell = structure.get_cell_lengths_and_angles()
+                print(cell)
                 f.write("CRYSTAL \n 0 0 0 \n")       
                 with st.spinner('Calculating Asymmetric Unit ...'):
                     asymmetric_unit = crystal_object.asymmetric_cell()
                     if len(asymmetric_unit) == len(structure):
                         spacegroup = 1
                 f.write(f"{spacegroup} \n") 
-                #
+                minimal_lattice = get_minimal_lattice_parameters(spacegroup, cell)
                 # write lattice info
-                #            
+                #
+                for param in minimal_lattice:
+                    f.write(f"{param}  ")
+                f.write("\n")
+
+                f.write(f"{len(asymmetric_unit)} \n")            
                 for atom in asymmetric_unit:
                     f.write(f"{atom.atomic_number} \n")
                 for line in calc_lines:
                     f.write(f"{line} \n")
                 for key,value in formatted_basis.items():
-                    print(value)
                     for item in value[0]['data']:
                         f.write(f"{item} \n")
 
