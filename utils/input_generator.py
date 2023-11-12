@@ -11,10 +11,6 @@ CALCULATION_TYPES_DEFUALTS = {"Single Point Energy": ['END'],
                        "Vibrational Frequencies": ['FREQCALC', 'INTENS', 'END', 'END'], 
                        "Equation of State": ['EOS', 'RANGE', '0.98 1.10 10','TOLDEG', '0.000010', 'TOLDEX', '0.000040', 'END', 'END']}
 
-CRYSTAL_DEFAULTS = {'TOLDEE': '8', 'TOLINTEG': '7 7 7 7 14' }
-
-
-
 
 def get_structures(structure_files: 'str'):
     """
@@ -44,6 +40,44 @@ def get_basis_references(basis_set: 'str', ase_structures):
         return ref_list
 
 def get_minimal_lattice_parameters(spacegroup, lattice):
+    """
+    Get the minimal lattice parameters based on the spacegroup.
+
+    This function takes a spacegroup number and a lattice parameter list
+    as input and returns a modified lattice parameter list with reduced
+    parameters based on the spacegroup. It is designed to simplify the lattice
+    parameters for crystallographic calculations.
+
+    Parameters:
+    spacegroup (int): The spacegroup number to determine the crystal system.
+    lattice (list): A list containing the lattice parameters [a, b, c, alpha, beta, gamma].
+
+    Returns:
+    list: A modified lattice parameter list based on the spacegroup. The returned
+    list may have fewer elements depending on the crystal system.
+
+    Crystal Systems:
+    - Monoclinic (spacegroup 3-15): Angles alpha, beta, and gamma are checked for uniqueness.
+      - If alpha == gamma and alpha != beta, the 'b' and 'c' lattice parameters are removed.
+      - If alpha == beta and alpha != gamma, the 'c' lattice parameter is removed.
+      - If beta == gamma and alpha != beta, the 'a' lattice parameter is removed.
+    - Orthorhombic (spacegroup 16-75): The 'alpha', 'beta', and 'gamma' angles are ignored.
+    - Tetragonal (spacegroup 75-143): The 'b' lattice parameter is removed.
+    - Trigonal (spacegroup 143-168): The 'b' lattice parameter is removed.
+    - Hexagonal (spacegroup 168-195): The 'b' lattice parameter is removed.
+    - Cubic (spacegroup 195-231): Only the 'a' lattice parameter is kept.
+
+    Note:
+    - The function modifies the input list 'lattice' and returns the modified list.
+    - The lattice parameter angles are in degrees.
+
+    Example:
+    spacegroup = 5
+    lattice = [5.0, 4.0, 6.0, 90.0, 90.0, 120.0]
+    minimal_lattice = get_minimal_lattice_parameters(spacegroup, lattice)
+    print(minimal_lattice)
+    # Output: [5.0, 6.0, 120.0]
+    """
     
     a, b, c, alpha , beta, gamma = lattice
     if spacegroup in range(3,15):
@@ -111,7 +145,6 @@ def write_input(input_dict):
                 crystal_object = Crystal.from_ase(structure)
                 spacegroup = crystal_object.symmetry()['international_number']
                 cell = structure.get_cell_lengths_and_angles()
-                print(cell)
                 f.write("CRYSTAL \n 0 0 0 \n")       
                 with st.spinner('Calculating Asymmetric Unit ...'):
                     asymmetric_unit = crystal_object.asymmetric_cell()
@@ -119,21 +152,28 @@ def write_input(input_dict):
                         spacegroup = 1
                 f.write(f"{spacegroup} \n") 
                 minimal_lattice = get_minimal_lattice_parameters(spacegroup, cell)
-                # write lattice info
-                #
                 for param in minimal_lattice:
                     f.write(f"{param}  ")
                 f.write("\n")
 
                 f.write(f"{len(asymmetric_unit)} \n")            
                 for atom in asymmetric_unit:
-                    f.write(f"{atom.atomic_number} \n")
+                    f.write(f"{atom.atomic_number} \t {'   '.join(map(str, atom.coords_fractional))} \n")
                 for line in calc_lines:
                     f.write(f"{line} \n")
                 for key,value in formatted_basis.items():
                     for item in value[0]['data']:
                         f.write(f"{item} \n")
-
+                f.write("99 0\nEND\nDFT \n")
+                if input_dict['dispersion'] == True:
+                    f.write(f"{input_dict['functional']}-D \n")        
+                else:
+                    f.write(f"{input_dict['functional']} \n")  
+                f.write(f"SHRINK \n {input_dict['shrink']} \n")
+                f.write(f"TOLDEE \n {input_dict['toldee']} \n")
+                f.write(f"TOLINTEG \n {input_dict['tolinteg']} \n")
+                f.write("END")
         with open(f"{Path(filename).stem}_INPUT_{input_dict['user_basis']}_{input_dict['functional']}", 'r') as f:
             lines = f.readlines()
+            lines = ' '.join(lines)
         return lines
