@@ -37,7 +37,7 @@ def get_basis_references(basis_set: 'str', ase_structures):
     for structure in ase_structures.values():
         elements = structure.get_chemical_symbols()
         ref_list.append(bse.get_references(basis_set, elements=elements, fmt='bib'))
-        return ref_list
+        return ' '.join(ref_list)
 
 def get_minimal_lattice_parameters(spacegroup, lattice):
     """
