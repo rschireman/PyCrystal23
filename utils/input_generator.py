@@ -145,7 +145,7 @@ def write_input(input_dict):
                 crystal_object = Crystal.from_ase(structure)
                 spacegroup = crystal_object.symmetry()['international_number']
                 cell = structure.get_cell_lengths_and_angles()
-                f.write("CRYSTAL \n 0 0 0 \n")       
+                f.write("CRYSTAL \n0 0 0 \n")       
                 with st.spinner('Calculating Asymmetric Unit ...'):
                     asymmetric_unit = crystal_object.asymmetric_cell()
                     if len(asymmetric_unit) == len(structure):
