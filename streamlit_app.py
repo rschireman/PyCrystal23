@@ -51,5 +51,5 @@ if __name__ == "__main__":
 
         input = input_generator.write_input(input_dict=input_dict)
         st.text_area(label="INPUT File", value=input, height=350)
-        st.text_area(label="References (bibtext format)", value=basis_references)
+        st.text_area(label="References (bibtext format)", value=basis_references, height=300)
     
