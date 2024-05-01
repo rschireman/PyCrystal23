@@ -1,15 +1,9 @@
 import streamlit as st
-import pymongo
+from supabase import create_client, Client
+import os
 
-# Initialize connection.
 # Uses st.cache_resource to only run once.
 @st.cache_resource
-def init_connection():
-    return pymongo.MongoClient(**st.secrets["mongo"])
-
-client = init_connection()
-
-
 def query_basis(basis_set, _structures):
     """
     Query crystallographic basis data for a given basis set and atomic structures.
@@ -42,13 +36,15 @@ def query_basis(basis_set, _structures):
     print(basis_data)
     # Output: {'H': [BasisDataEntry1, BasisDataEntry2], 'O': [BasisDataEntry3, BasisDataEntry4], ...}
     """
-    db = client.CrystalBasisData
+    url: str = os.environ.get("SUPABASE_URL")
+    key: str = os.environ.get("SUPABASE_KEY")
+    supabase: Client = create_client(url, key)
     result = {}
     for key,value in _structures.items():
         atoms = set(value.get_chemical_symbols())
         for atom in atoms:
-            items = db.basis_data.find({"Basis Set": basis_set, "atom": atom})
-            result[atom] = list(items)
-    print(result)        
+            response = supabase.table('CrystalBasisData').select('*').match({'element': atom, 'basis': basis_set}).execute()
+            result[atom] = list(response.data[0]['basis_data'])
+  
     return result
 

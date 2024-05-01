@@ -1,12 +1,12 @@
-import pytest
-from database import connection
+from supabase import create_client, Client
+import os
 
-def test_database_connection():
-    try:
-        # Attempt to connect to the database
-        db_connection = connection.init_connection()
-        db = db_connection.CrystalBasisData
-        # Check if the connection is successful
-        assert db.command("ping") == {'ok': 1.0}
-    except Exception as e:
-        pytest.fail(f"Failed to connect to the database: {str(e)}")
+def test_connection():
+
+    url: str = os.environ.get("SUPABASE_URL")
+    key: str = os.environ.get("SUPABASE_KEY")
+    supabase: Client = create_client(url, key)
+
+
+    response = supabase.table('CrystalBasisData').select('basis_data').match({'element': 'O', 'basis': '6-311G(d,p)'}).execute()
+    print(response.data[0]['basis_data'])

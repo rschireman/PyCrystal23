@@ -8,6 +8,12 @@ ENV PYTHONUNBUFFERED=1 \
     LC_ALL=C.UTF-8 \
     LANG=C.UTF-8
 
+ARG supabase_key
+ARG supabase_url
+
+ENV SUPABASE_URL=$supabase_url
+ENV SUPABASE_KEY=$supabase_key
+
 # we need some build tools for installing additional python pip packages
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \

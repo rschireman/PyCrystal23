@@ -1,7 +1,8 @@
 # add the required pypi packages here that your app actually needs
 streamlit
 ase
-pymongo
 pytest
 basis_set_exchange
 crystals
+pytest
+supabase

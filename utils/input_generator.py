@@ -174,9 +174,9 @@ def write_input(input_dict):
                     f.write(f"{atom.atomic_number} \t {'   '.join(map(str, atom.coords_fractional))} \n")
                 for line in calc_lines:
                     f.write(f"{line} \n")
-                for key,value in formatted_basis.items():
-                    for item in value[0]['data']:
-                        f.write(f"{item} \n")
+                for row in formatted_basis.values():
+                    for item in row:
+                        f.write(item)
                 f.write("99 0\nEND\nDFT \n")
                 if input_dict['dispersion'] == True:
                     f.write(f"{input_dict['functional']}-D \n")        
