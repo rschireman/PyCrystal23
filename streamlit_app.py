@@ -1,6 +1,7 @@
 import streamlit as st
 import basis_set_exchange as bse
-from utils.input_generator import get_structures, get_basis_references, write_input
+# from utils.input_generator import get_structures, get_basis_references, write_input
+from utils.input_generator import PyCrystal23
 
 
 def main():
@@ -20,6 +21,8 @@ def main():
         ---
         """, unsafe_allow_html=True)
 
+    input = PyCrystal23()
+    
     # Get basis sets
     all_basis_sets = bse.get_all_basis_names()
     user_basis_set = st.sidebar.selectbox("Basis Set", all_basis_sets, index=33)
@@ -35,8 +38,8 @@ def main():
     uploaded_file = st.file_uploader("Upload Structure File", accept_multiple_files=False)
     if uploaded_file:
         # Generate input
-        structures = get_structures(uploaded_file)
-        basis_references = get_basis_references(user_basis_set, structures)
+        structures = input.get_structures(uploaded_file)
+        basis_references = input.get_basis_references(user_basis_set, structures)
         
         input_dict = {
             'user_basis': user_basis_set,
@@ -49,7 +52,7 @@ def main():
             'shrink': shrink
         }
 
-        input_file = write_input(input_dict=input_dict)
+        input_file = input.write_input(input_dict=input_dict)
         
         # Display input and references
         st.text_area(label="INPUT File", value=input_file, height=350)
