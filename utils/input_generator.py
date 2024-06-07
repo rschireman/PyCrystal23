@@ -159,9 +159,10 @@ class PyCrystal23:
                         f.write(''.join(row))
                     f.write("99 0\nEND\nDFT \n")
                     f.write(f"{input_dict['functional']}-D \n" if input_dict['dispersion'] else f"{input_dict['functional']} \n")
-                    f.write(f"SHRINK \n {input_dict['shrink']} \n")
-                    f.write(f"TOLDEE \n {input_dict['toldee']} \n")
-                    f.write(f"TOLINTEG \n {input_dict['tolinteg']} \n")
+                    f.write("XLGRID \nEND\n")
+                    f.write(f"SHRINK \n{input_dict['shrink']}\n")
+                    f.write(f"TOLDEE \n{input_dict['toldee']}\n")
+                    f.write(f"TOLINTEG \n{input_dict['tolinteg']}\n")
                     f.write("END")
             with open(download_filename, 'r') as f:
                 lines = f.read()
