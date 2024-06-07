@@ -129,6 +129,7 @@ class PyCrystal23Input:
 
 
     def write_input(self, input_dict):
+        use_symmetry = input_dict['use_symmetry']
         structures = input_dict['structures']
         calc_type = input_dict['calc_type']
         calc_lines = self.CALCULATION_TYPES_DEFAULTS[calc_type]
@@ -143,16 +144,22 @@ class PyCrystal23Input:
                     spacegroup = crystal_object.symmetry()['international_number']
                     cell = structure.get_cell_lengths_and_angles()
                     f.write("CRYSTAL \n0 0 0 \n")
-                    with st.spinner('Calculating Asymmetric Unit ...'):
-                        asymmetric_unit = crystal_object.asymmetric_cell()
-                        if len(asymmetric_unit) == len(structure):
-                            spacegroup = 1
-                    f.write(f"{spacegroup} \n")
-                    minimal_lattice = self.get_minimal_lattice_parameters(spacegroup, cell)
-                    f.write(' '.join(map(str, minimal_lattice)) + "\n")
-                    f.write(f"{len(asymmetric_unit)} \n")
-                    for atom in asymmetric_unit:
-                        f.write(f"{atom.atomic_number} \t {'   '.join(map(str, atom.coords_fractional))} \n")
+                    if use_symmetry == 'True':
+                        with st.spinner('Calculating Asymmetric Unit ...'):
+                            asymmetric_unit = crystal_object.asymmetric_cell()
+                            if len(asymmetric_unit) == len(structure):
+                                    spacegroup = 1
+                        f.write(f"{spacegroup} \n")
+                        minimal_lattice = self.get_minimal_lattice_parameters(spacegroup, cell)
+                        f.write(' '.join(map(str, minimal_lattice)) + "\n")
+                        f.write(f"{len(asymmetric_unit)} \n")
+                        for atom in asymmetric_unit:
+                            f.write(f"{atom.atomic_number} \t {'   '.join(map(str, atom.coords_fractional))} \n")
+                    if use_symmetry == 'False':
+                        f.write("1\n")
+                        f.write(' '.join(map(str, cell)) + "\n")
+                        for atom in crystal_object:
+                            f.write(f"{atom.atomic_number}\t {'   '.join(map(str, atom.coords_fractional))} \n")
                     for line in calc_lines:
                         f.write(f"{line} \n")
                     for row in formatted_basis.values():
