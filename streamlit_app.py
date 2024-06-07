@@ -21,7 +21,7 @@ def main():
         ---
         """, unsafe_allow_html=True)
 
-    input = PyCrystal23()
+    input = PyCrystal23Input()
     
     # Get basis sets
     all_basis_sets = bse.get_all_basis_names()

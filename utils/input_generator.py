@@ -5,7 +5,7 @@ from pathlib import Path
 from crystals import Crystal
 from database import connection
 
-class PyCrystal23:
+class PyCrystal23Input:
     def __init__(self):
         self.CALCULATION_TYPES_DEFAULTS = {
             "Single Point Energy": ['END'],
