@@ -1,7 +1,6 @@
 import streamlit as st
 import basis_set_exchange as bse
-# from utils.input_generator import get_structures, get_basis_references, write_input
-from utils.input_generator import PyCrystal23
+from utils.input_generator import PyCrystal23Input
 
 
 def main():
