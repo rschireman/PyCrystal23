@@ -1,27 +1,13 @@
-# Streamlit Template Project
+# PyCRYSTAL23
 
-[![Streamlit](https://img.shields.io/badge/Go%20To-Streamlit%20Cloud-red?logo=streamlit)](https://streamlit.io/)
+PyCRYSTAL23 is a user-friendly Python tool designed to help generate CRYSTAL23 input files with ease. Whether you're a seasoned materials scientist or just starting with CRYSTAL23, this tool provides a simple and intuitive interface, letting you focus on the science.
 
-Streamlit template project for new streamlit projects.
+## Features
 
-## *How to use this template project see in the [Usage.md](Usage.md) file*
+- **Intuitive Interface:** Easy-to-use interface for generating CRYSTAL23 input files.
+- **User-Friendly:** Designed for both experienced materials scientists and beginners.
+- **Efficient:** Streamlines the process of creating input files, saving you time and effort.
 
-## Description ✏️
+## Technical Design
 
-> Describe your streamlit project here.
-
-## Status ✔️
-
-> Last changed: 2023-08-07
-
-## Issues 🚩
-
-> Describe known issues here.
-
-## ToDo ☑️
-
-> Describe open ToDo's here.
-
-## Resources 📚
-
-> Describe useful resources here.
+[![](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc/preview?elements=RKvLIrl8juNXRgWBHDF8oA&type=embed)](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc?elements=RKvLIrl8juNXRgWBHDF8oA)

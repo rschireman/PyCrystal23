@@ -55,7 +55,7 @@ def main():
         
         # Display input and references
         st.text_area(label="INPUT File", value=input_file, height=350)
-        st.text_area(label="References (bibtext format)", value=basis_references, height=300)
+        st.text_area(label="References", value=basis_references, height=300)
 
 if __name__ == "__main__":
     main()
