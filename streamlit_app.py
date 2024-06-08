@@ -56,7 +56,7 @@ def main():
         input_file = input.write_input(input_dict=input_dict)
         
         # Display input and references
-        st.text_area(label="INPUT File", value=input_file, height=350)
+        st.text_area(label="INPUT File", value=input_file, height=500)
         st.text_area(label="References", value=basis_references, height=300)
 
 if __name__ == "__main__":
