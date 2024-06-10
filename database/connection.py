@@ -33,7 +33,6 @@ def query_basis(basis_set, _structures):
         # ... (more structures)
     }
     basis_data = query_basis(basis_set, structures)
-    print(basis_data)
     # Output: {'H': [BasisDataEntry1, BasisDataEntry2], 'O': [BasisDataEntry3, BasisDataEntry4], ...}
     """
     url: str = os.environ.get("SUPABASE_URL")
