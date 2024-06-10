@@ -7,41 +7,41 @@ Symmetry detection in crystal structures is a crucial aspect of crystallography 
 
 ### Symmetry Operations
 
-1. **Rotation**: A rotation operation can be described by an angle \(\theta\) around an axis. For example, a rotation by \(\theta\) about the \(z\)-axis is represented by the rotation matrix:
-   \[
+1. **Rotation**: A rotation operation can be described by an angle \($\theta$) around an axis. For example, a rotation by ($\theta$) about the \(z\) axis is represented by the rotation matrix:
+   $
    R_z(\theta) = \begin{pmatrix}
    \cos\theta & -\sin\theta & 0 \\
    \sin\theta & \cos\theta & 0 \\
    0 & 0 & 1
    \end{pmatrix}
-   \]
+   $
 
-2. **Reflection**: A reflection across a plane, such as the \(xy\)-plane, can be represented by the matrix:
-   \[
+2. **Reflection**: A reflection across a plane, such as the $xy$ plane, can be represented by the matrix:
+   $
    M_{xy} = \begin{pmatrix}
    1 & 0 & 0 \\
    0 & 1 & 0 \\
    0 & 0 & -1
    \end{pmatrix}
-   \]
+   $
 
 3. **Inversion**: An inversion operation through a point (usually the origin) is given by:
-   \[
+   $
    I = \begin{pmatrix}
    -1 & 0 & 0 \\
    0 & -1 & 0 \\
    0 & 0 & -1
    \end{pmatrix}
-   \]
+   $
 
-4. **Translation**: A translation operation moves every point by a fixed vector \(\mathbf{t} = (t_x, t_y, t_z)\), described by the translation vector:
-   \[
+4. **Translation**: A translation operation moves every point by a fixed vector $\mathbf{t} = (t_x, t_y, t_z)$, described by the translation vector:
+   $
    \mathbf{T} = \begin{pmatrix}
    t_x \\
    t_y \\
    t_z
    \end{pmatrix}
-   \]
+   $
 
 ## Demo
 
