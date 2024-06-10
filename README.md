@@ -10,4 +10,4 @@ PyCRYSTAL23 is a user-friendly Python tool designed to help generate CRYSTAL23 i
 
 ## Technical Design
 
-[![](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc/preview?elements=RKvLIrl8juNXRgWBHDF8oA&type=embed)](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc?elements=RKvLIrl8juNXRgWBHDF8oA)
+[![](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc/preview?elements=8lZ_Xrc_TzNsYhMjGmMLAA&type=embed)](https://app.eraser.io/workspace/S41RIQHXRUOeDY5Dmbbc?elements=8lZ_Xrc_TzNsYhMjGmMLAA)
