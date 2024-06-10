@@ -6,7 +6,7 @@ PyCRYSTAL23 is a user-friendly Python tool designed to help generate CRYSTAL23 i
 
 Check out the demo, hosted via the Streamlit Cloud. Note: Finding symmetry with large structures (> 30 atoms) will result in an error.
 
-[![]https://pycrystal23-irahbptihfxaezi4c3qraj.streamlit.app]
+https://pycrystal23-irahbptihfxaezi4c3qraj.streamlit.app
 
 ## Features
 
