@@ -8,7 +8,13 @@ Symmetry detection in crystal structures is a crucial aspect of crystallography 
 ### Symmetry Operations
 
 1. **Rotation**: A rotation operation can be described by an angle \($\theta$) around an axis. For example, a rotation by ($\theta$) about the $z$ axis is represented by the rotation matrix:
-   $$R_z(\theta) = \begin{pmatrix}\cos\theta & -\sin\theta & 0 \\\sin\theta & \cos\theta & 0 \\0 & 0 & 1\end{pmatrix}$$
+   $$
+   R_z(\theta) = \begin{pmatrix}
+   \cos\theta & -\sin\theta & 0 \\
+   \sin\theta & \cos\theta & 0 \\
+   0 & 0 & 1
+   \end{pmatrix}
+   $$
 
 2. **Reflection**: A reflection across a plane, such as the $xy$ plane, can be represented by the matrix:
    $$
