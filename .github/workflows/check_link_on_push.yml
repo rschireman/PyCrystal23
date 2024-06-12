@@ -1,0 +1,11 @@
+name: check link on push
+on: 
+  push: 
+    branches:
+        - 'main'      
+jobs:
+  issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        run: wget -O - http://yoursite.com/tasks.php >/dev/null 2>&1

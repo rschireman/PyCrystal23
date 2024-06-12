@@ -1,0 +1,9 @@
+name: Check link
+on:
+  schedule:
+    - cron: '0 2 * * *'
+jobs:
+  issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
