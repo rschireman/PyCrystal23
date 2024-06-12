@@ -4,8 +4,8 @@ on:
     branches:
         - 'main'      
 jobs:
-  issue:
+  check-link-on-push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        run: wget -O - http://yoursite.com/tasks.php >/dev/null 2>&1
+        run: wget -O - https://pycrystal23-irahbptihfxaezi4c3qraj.streamlit.app/ >/dev/null 2>&1
