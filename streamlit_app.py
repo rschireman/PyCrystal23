@@ -17,9 +17,8 @@ def main():
         PyCRYSTAL23 is a user-friendly Python tool designed to help generate CRYSTAL23 input files with ease. 
         Whether you're a seasoned materials scientist or just starting with CRYSTAL23, this tool provides a simple and intuitive interface, 
         letting you focus on the science.
-                
+        ---        
         Get started by selecting a basis set and functional, then upload your structure file.        
-        ---
         """, unsafe_allow_html=True)
 
     input = PyCrystal23Input()
