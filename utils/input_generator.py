@@ -128,13 +128,6 @@ class PyCrystal23Input:
             return lattice
 
 
-from ase.io import read
-import streamlit as st
-import basis_set_exchange as bse
-from pathlib import Path
-from crystals import Crystal
-from database import connection
-
 class PyCrystal23Input:
     def __init__(self):
         self.CALCULATION_TYPES_DEFAULTS = {
@@ -274,7 +267,7 @@ class PyCrystal23Input:
                     spacegroup = crystal_object.symmetry()['international_number']
                     cell = structure.get_cell_lengths_and_angles()
                     f.write("CRYSTAL \n0 0 0 \n")
-                    if use_symmetry == 'True':
+                    if use_symmetry == True:
                         with st.spinner('Calculating Asymmetric Unit ...'):
                             asymmetric_unit = crystal_object.asymmetric_cell()
                             if len(asymmetric_unit) == len(structure):
@@ -285,7 +278,7 @@ class PyCrystal23Input:
                         f.write(f"{len(asymmetric_unit)} \n")
                         for atom in asymmetric_unit:
                             f.write(f"{atom.atomic_number} \t {'   '.join(map(str, atom.coords_fractional))} \n")
-                    if use_symmetry == 'False':
+                    if use_symmetry == False:
                         f.write("1\n")
                         f.write(' '.join(map(str, cell)) + "\n")
                         for atom in crystal_object:

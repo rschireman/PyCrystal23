@@ -28,7 +28,7 @@ def main():
     user_basis_set = st.sidebar.selectbox("Basis Set", all_basis_sets, index=33)
     
     # Get user inputs
-    symmetry = st.sidebar.selectbox("Find Symmetry", ("True", "False"))
+    symmetry = st.sidebar.selectbox("Find Symmetry", (True, False))
     user_functional = st.sidebar.selectbox("Functional", ('B3LYP', 'PBE', 'PBE0', 'BLYP', 'PBESOL'))
     calc_type = st.sidebar.selectbox("Calculation Type", ('Single Point Energy', 'Geometry Optimization', 'Vibrational Frequencies', 'Equation of State'))
     toldee = st.sidebar.selectbox('TOLDEE', ('6', '8', '10', '11', '12'), index=1)
