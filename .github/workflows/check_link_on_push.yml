@@ -12,5 +12,5 @@ jobs:
         run: wget -O - https://pycrystal23-irahbptihfxaezi4c3qraj.streamlit.app/ >/dev/null 2>&1
       - name:
         run: | 
-          pip install pytest
+          pip install pytest supabase
           python3 -m pytest  
