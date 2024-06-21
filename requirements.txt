@@ -6,3 +6,4 @@ basis_set_exchange
 crystals
 pytest
 supabase
+pytest
