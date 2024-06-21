@@ -10,3 +10,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check Link
         run: wget -O - https://pycrystal23-irahbptihfxaezi4c3qraj.streamlit.app/ >/dev/null 2>&1
+      - name:
+        run: python3 -m pytest  
