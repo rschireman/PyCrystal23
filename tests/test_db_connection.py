@@ -25,5 +25,5 @@ def test_connection():
     response = supabase.table('CrystalBasisData').select('*').match({'element': 'H', 'basis': '6-311G(d,p)'}).execute()
     result['H'] = list(response.data[0]['basis_data'])
 
-    assert result is not None
+    assert len(result['H']) != 0 
     
