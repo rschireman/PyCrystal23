@@ -17,8 +17,6 @@ def test_connection():
           entry in the list depends on the database schema.
 
     """
-    env_file = os.getenv('GITHUB_ENV')
-    print(env_file)
     url: str = os.environ.get("SUPABASE_URL")
     key: str = os.environ.get("SUPABASE_KEY")
     supabase: Client = create_client(url, key)

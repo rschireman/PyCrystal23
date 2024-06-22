@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: check supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
             pip install supabase pytest
             python3 -m pytest
