@@ -19,10 +19,13 @@ def test_connection():
     """
     url: str = os.environ.get("SUPABASE_URL")
     key: str = os.environ.get("SUPABASE_KEY")
-    print(url)
     supabase: Client = create_client(url, key)
+    
     result = {}
     response = supabase.table('CrystalBasisData').select('*').match({'element': 'H', 'basis': '6-311G(d,p)'}).execute()
     result['H'] = list(response.data[0]['basis_data'])
-    
+
     assert result is not None
+    
+if __name__ == "__main__":
+      test_connection()    
