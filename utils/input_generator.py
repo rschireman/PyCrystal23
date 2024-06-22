@@ -281,6 +281,7 @@ class PyCrystal23Input:
                     if use_symmetry == False:
                         f.write("1\n")
                         f.write(' '.join(map(str, cell)) + "\n")
+                        f.write(str(len(structure)))
                         for atom in crystal_object:
                             f.write(f"{atom.atomic_number}\t {'   '.join(map(str, atom.coords_fractional))} \n")
                     for line in calc_lines:
