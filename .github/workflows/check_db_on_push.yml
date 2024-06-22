@@ -1,4 +1,4 @@
-name: check link on push
+name: check db on push
 on: 
   push: 
     branches:
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check Streamlit Link
+      - name: check supabase
         run: |
-            pip install supabase
+            pip install supabase pytest
             python3 -m pytest
