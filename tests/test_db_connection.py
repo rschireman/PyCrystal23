@@ -16,8 +16,6 @@ def test_connection():
           the database for the specified basis set and atom. The structure of each
           entry in the list depends on the database schema.
 
-    Example:
-    # Output: {'H': [BasisDataEntry1, BasisDataEntry2], 'O': [BasisDataEntry3, BasisDataEntry4], ...}
     """
     url: str = os.environ.get("SUPABASE_URL")
     key: str = os.environ.get("SUPABASE_KEY")
