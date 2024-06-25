@@ -40,7 +40,7 @@ EXPOSE 8501
 
 COPY . .
 
-CMD ["streamlit", "run", "Cif_file_input_generator.py"]
+CMD ["streamlit", "run", "cif_file_input_generator.py"]
 
 # Some docker commands see below:
 # docker build --progress=plain --tag streamlit:latest .
