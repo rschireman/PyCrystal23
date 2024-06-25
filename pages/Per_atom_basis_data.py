@@ -3,6 +3,8 @@ import basis_set_exchange as bse
 from database.connection import  query_basis_individual_atoms
 import periodictable
 
+
+
 st.set_page_config(
         page_title="CRYSTAL Basis Sets",
         page_icon='U+269B',
